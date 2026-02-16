@@ -1,0 +1,15 @@
+[build]
+  publish = "."
+  command = "echo 'No build command needed for static site'"
+  functions = "functions"
+
+[dev]
+  command = "echo 'No dev server needed'"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+[functions]
+  directory = "functions"
