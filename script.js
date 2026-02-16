@@ -328,4 +328,208 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('%c Welcome to Prime Hair Brand! ', 'background: #d4af37; color: #1a1a1a; font-size: 20px; padding: 10px; border-radius: 5px;');
     console.log('%c Thank you for visiting our website! ', 'background: #1a1a1a; color: #d4af37; font-size: 14px; padding: 5px;');
 
+    // ============================================
+    // Shopping Cart Functionality
+    // ============================================
+    const cartBtn = document.querySelector('.cart-btn');
+    const cartSidebar = document.querySelector('.cart-sidebar');
+    const closeCart = document.querySelector('.close-cart');
+    const cartOverlay = document.querySelector('.cart-overlay');
+    const cartCountEl = document.querySelector('.cart-count');
+    const cartItemsContainer = document.querySelector('.cart-items');
+    const totalPriceEl = document.querySelector('.total-price');
+    
+    let cart = [];
+    
+    function updateCart() {
+        cartCountEl.textContent = cart.length;
+        
+        if (cart.length === 0) {
+            cartItemsContainer.innerHTML = '<p class="cart-empty">Your cart is empty</p>';
+            totalPriceEl.textContent = '$0.00';
+        } else {
+            let itemsHTML = '';
+            let total = 0;
+            
+            cart.forEach((item, index) => {
+                total += item.price;
+                itemsHTML += `
+                    <div class="cart-item">
+                        <p>${item.name}</p>
+                        <span>$${item.price.toFixed(2)}</span>
+                    </div>
+                `;
+            });
+            
+            cartItemsContainer.innerHTML = itemsHTML;
+            totalPriceEl.textContent = '$' + total.toFixed(2);
+        }
+    }
+    
+    if (cartBtn && cartSidebar) {
+        cartBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            cartSidebar.classList.add('active');
+            cartOverlay.classList.add('active');
+        });
+        
+        closeCart.addEventListener('click', () => {
+            cartSidebar.classList.remove('active');
+            cartOverlay.classList.remove('active');
+        });
+        
+        cartOverlay.addEventListener('click', () => {
+            cartSidebar.classList.remove('active');
+            cartOverlay.classList.remove('active');
+        });
+    }
+    
+    // Add to cart buttons
+    const addToCartBtns = document.querySelectorAll('.product-card .btn-outline');
+    addToCartBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const productCard = this.closest('.product-card');
+            const productName = productCard.querySelector('h3').textContent;
+            const productPrice = parseFloat(productCard.querySelector('.price').textContent.replace('$', ''));
+            
+            cart.push({ name: productName, price: productPrice });
+            updateCart();
+            
+            // Show feedback
+            const originalText = this.textContent;
+            this.textContent = 'Added!';
+            this.style.backgroundColor = '#d4af37';
+            this.style.color = '#ffffff';
+            
+            setTimeout(() => {
+                this.textContent = originalText;
+                this.style.backgroundColor = '';
+                this.style.color = '';
+            }, 1500);
+        });
+    });
+
+    // ============================================
+    // Wishlist Functionality
+    // ============================================
+    const wishlistBtn = document.querySelector('.wishlist-btn');
+    const wishlistSidebar = document.querySelector('.wishlist-sidebar');
+    const closeWishlist = document.querySelector('.close-wishlist');
+    const wishlistOverlay = document.querySelector('.wishlist-overlay');
+    const wishlistCountEl = document.querySelector('.wishlist-count');
+    const wishlistItemsContainer = document.querySelector('.wishlist-items');
+    
+    let wishlist = [];
+    
+    function updateWishlist() {
+        wishlistCountEl.textContent = wishlist.length;
+        
+        if (wishlist.length === 0) {
+            wishlistItemsContainer.innerHTML = '<p class="wishlist-empty">Your wishlist is empty</p>';
+        } else {
+            let itemsHTML = '';
+            
+            wishlist.forEach(item => {
+                itemsHTML += `
+                    <div class="wishlist-item">
+                        <p>${item.name}</p>
+                        <span>$${item.price.toFixed(2)}</span>
+                    </div>
+                `;
+            });
+            
+            wishlistItemsContainer.innerHTML = itemsHTML;
+        }
+    }
+    
+    if (wishlistBtn && wishlistSidebar) {
+        wishlistBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            wishlistSidebar.classList.add('active');
+            wishlistOverlay.classList.add('active');
+        });
+        
+        closeWishlist.addEventListener('click', () => {
+            wishlistSidebar.classList.remove('active');
+            wishlistOverlay.classList.remove('active');
+        });
+        
+        wishlistOverlay.addEventListener('click', () => {
+            wishlistSidebar.classList.remove('active');
+            wishlistOverlay.classList.remove('active');
+        });
+    }
+
+    // ============================================
+    // Newsletter Popup
+    // ============================================
+    const newsletterPopup = document.querySelector('.newsletter-popup');
+    const closeNewsletter = document.querySelector('.close-newsletter');
+    
+    if (newsletterPopup) {
+        // Show popup after 3 seconds
+        setTimeout(() => {
+            newsletterPopup.classList.add('active');
+        }, 3000);
+        
+        // Close popup
+        if (closeNewsletter) {
+            closeNewsletter.addEventListener('click', () => {
+                newsletterPopup.classList.remove('active');
+            });
+        }
+        
+        // Close when clicking outside
+        newsletterPopup.addEventListener('click', (e) => {
+            if (e.target === newsletterPopup) {
+                newsletterPopup.classList.remove('active');
+            }
+        });
+        
+        // Newsletter popup form
+        const newsletterPopupForm = document.querySelector('.newsletter-popup-form');
+        if (newsletterPopupForm) {
+            newsletterPopupForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Thank you for subscribing! You will receive 20% off your first order.');
+                newsletterPopup.classList.remove('active');
+            });
+        }
+    }
+
+    // ============================================
+    // FAQ Accordion
+    // ============================================
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        
+        question.addEventListener('click', () => {
+            // Close other items
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                }
+            });
+            
+            // Toggle current item
+            item.classList.toggle('active');
+        });
+    });
+
+    // ============================================
+    // Checkout Button
+    // ============================================
+    const checkoutBtn = document.querySelector('.checkout-btn');
+    if (checkoutBtn) {
+        checkoutBtn.addEventListener('click', () => {
+            if (cart.length > 0) {
+                alert('Thank you for your order! This is a demo website.');
+            } else {
+                alert('Your cart is empty!');
+            }
+        });
+    }
+
 });

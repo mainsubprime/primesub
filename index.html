@@ -14,7 +14,7 @@
         <div class="container">
             <nav class="navbar">
                 <div class="logo">
-                    <a href="#">Prime<span></span></a>
+                    <a href="#">Prime<span>Hair</span></a>
                 </div>
                 <ul class="nav-menu">
                     <li><a href="#home" class="nav-link">Home</a></li>
@@ -22,8 +22,14 @@
                     <li><a href="#about" class="nav-link">About</a></li>
                     <li><a href="#services" class="nav-link">Services</a></li>
                     <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
+                    <li><a href="#faq" class="nav-link">FAQ</a></li>
                     <li><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
+                <div class="nav-icons">
+                    <a href="#" class="search-btn"><i class="fas fa-search"></i></a>
+                    <a href="#" class="wishlist-btn"><i class="far fa-heart"></i><span class="wishlist-count">0</span></a>
+                    <a href="#" class="cart-btn"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a>
+                </div>
                 <div class="hamburger">
                     <span class="bar"></span>
                     <span class="bar"></span>
@@ -32,6 +38,54 @@
             </nav>
         </div>
     </header>
+
+    <!-- Shopping Cart Sidebar -->
+    <div class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Shopping Cart</h3>
+            <button class="close-cart"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-items">
+            <p class="cart-empty">Your cart is empty</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span class="total-price">$0.00</span>
+            </div>
+            <button class="btn btn-primary checkout-btn">Proceed to Checkout</button>
+        </div>
+    </div>
+    <div class="cart-overlay"></div>
+
+    <!-- Wishlist Sidebar -->
+    <div class="wishlist-sidebar">
+        <div class="wishlist-header">
+            <h3>My Wishlist</h3>
+            <button class="close-wishlist"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="wishlist-items">
+            <p class="wishlist-empty">Your wishlist is empty</p>
+        </div>
+    </div>
+    <div class="wishlist-overlay"></div>
+
+    <!-- Newsletter Popup -->
+    <div class="newsletter-popup">
+        <div class="newsletter-content">
+            <button class="close-newsletter"><i class="fas fa-times"></i></button>
+            <div class="newsletter-image">
+                <i class="fas fa-gift"></i>
+            </div>
+            <h2>Get 20% Off!</h2>
+            <p>Subscribe to our newsletter and get 20% off your first order.</p>
+            <form class="newsletter-popup-form">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit" class="btn btn-primary">Subscribe Now</button>
+            </form>
+            <p class="newsletter-note">No spam, unsubscribe anytime.</p>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
@@ -243,6 +297,72 @@
                             <h4>Michelle Brown</h4>
                             <span>Verified Buyer</span>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Find answers to common questions</p>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What are your shipping options?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We offer free shipping on orders over $50. Standard shipping takes 5-7 business days, while express shipping takes 2-3 business days. International shipping is available to select countries.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What is your return policy?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We offer a 30-day money-back guarantee on all products. If you're not satisfied with your purchase, simply contact our customer service team to initiate a return.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Are your products cruelty-free?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! All Prime Hair Brand products are 100% cruelty-free. We never test on animals and we source only the finest ethical ingredients.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How long does it take to see results?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Most customers see visible results within 2-4 weeks of consistent use. For best results, we recommend using the products as directed for at least 8 weeks.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Do you ship internationally?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes, we ship to over 50 countries worldwide. Shipping costs and delivery times vary by location. International orders may be subject to customs duties and taxes.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How do I choose the right products for my hair?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Our products are suitable for all hair types. You can browse our product descriptions to find the best match for your specific hair needs, or contact our customer service for personalized recommendations.</p>
                     </div>
                 </div>
             </div>
